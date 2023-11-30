@@ -1,0 +1,18 @@
+import{_ as t}from"./plugin-vue_export-helper-x3n3nnut.js";import{r as n,o as a,c as d,a as s,b as e,d as i,e as o}from"./app-aeozbcr_.js";const c={},h=o('<h1 id="联邦" tabindex="-1"><a class="header-anchor" href="#联邦" aria-hidden="true">#</a> 联邦</h1><p>联邦使得一个 Prometheus 服务器可以从另一个 Prometheus 服务器提取选定的时序。</p><h2 id="使用场景" tabindex="-1"><a class="header-anchor" href="#使用场景" aria-hidden="true">#</a> 使用场景</h2><p>Prometheus 联邦有不同的使用场景。通常，联邦被用来实现可扩展的 Prometheus 监控设置，或者将相关的指标从一个服务的 Prometheus 拉取到另一个 Prometheus 中。</p><h3 id="分层联邦" tabindex="-1"><a class="header-anchor" href="#分层联邦" aria-hidden="true">#</a> 分层联邦</h3><p>分层联邦允许 Prometheus 能够扩展到十几个数据中心和上百万的节点。在此场景下，联邦拓扑类似一个树形拓扑结构，上层的 Prometheus 服务器从大量的下层 Prometheus 服务器中收集和汇聚的时序数据。</p><p>例如，一个联邦设置可能由多个数据中心中的 Prometheus 服务器和一套全局 Prometheus 服务器组成。每个数据中心中部署的 Prometheus 服务器负责收集本区域内细粒度的数据（实例级别），全局 Prometheus 服务器从这些下层 Prometheus 服务器中收集和汇聚数据（任务级别），并存储聚合后的数据。这样就提供了一个聚合的全局视角和详细的本地视角。</p><h3 id="跨服务联邦" tabindex="-1"><a class="header-anchor" href="#跨服务联邦" aria-hidden="true">#</a> 跨服务联邦</h3><p>在跨服务联邦中，一个服务的 Prometheus 服务器被配置来提取来自其他服务的 Prometheus 服务器的指定的数据，以便在一个 Prometheus 服务器中对两个数据集启用告警和查询。</p><p>例如，一个运行多种服务的集群调度器可以暴露在集群上运行的服务实例的资源使用信息（例如内存和 CPU 使用率）。另一方面，运行在集群上的服务只需要暴露指定应用程序级别的服务指标。通常，这两种指标集分别被不同的 Prometheus 服务器抓取。利用联邦，监控服务级别指标的 Prometheus 服务器也可以从集群中 Prometheus 服务器拉取其特定服务的集群资源使用率指标，以便可以在该 Prometheus 服务器中使用这两组指标集</p><h2 id="配置联邦" tabindex="-1"><a class="header-anchor" href="#配置联邦" aria-hidden="true">#</a> 配置联邦</h2>',11),u=s("code",null,"/federate",-1),l=s("code",null,"match[]",-1),m=s("code",null,"match[]",-1),_={href:"https://prometheus.io/docs/prometheus/latest/querying/basics/#instant-vector-selectors",target:"_blank",rel:"noopener noreferrer"},v=s("code",null,"up",-1),p=s("code",null,'{job="api-server"}',-1),b=s("code",null,"match[]",-1),P=o(`<p>从一个 Prometheus 服务器联邦指标到另一个 Prometheus 服务器，配置你的目标 Prometheus 服务器从源服务器的 <code>/federate</code> 节点抓取指标数据，同时也使用 <code>honor_lables</code> 抓取选项（不重写源 Prometheus 服务暴露的标签）并且传递需要的 <code>match[]</code> 参数。例如，下面的 <code>scrape_configs</code> 联邦 <code>source-prometheus-{1,2,3}:9090</code> 三台 Prometheus 服务器，上层 Prometheus 抓取并汇总他们暴露的任何带 <code>job=&quot;prometheus&quot;</code> 标签的序列或名称以 <code>job:</code> 开头的指标。</p><div class="language-text line-numbers-mode" data-ext="text"><pre class="language-text"><code>scrape_configs:
+  - job_name: &#39;federate&#39;
+    scrape_interval: 15s
+
+    honor_labels: true
+    metrics_path: &#39;/federate&#39;
+
+    params:
+      &#39;match[]&#39;:
+        - &#39;{job=&quot;prometheus&quot;}&#39;
+        - &#39;{__name__=~&quot;job:.*&quot;}&#39;
+
+    static_configs:
+      - targets:
+        - &#39;source-prometheus-1:9090&#39;
+        - &#39;source-prometheus-2:9090&#39;
+        - &#39;source-prometheus-3:9090&#39;
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,2);function f(x,g){const r=n("ExternalLinkIcon");return a(),d("div",null,[h,s("p",null,[e("在 Prometheus 服务器中，"),u,e(" 节点允许获取服务中被选中的时间序列集合的值。至少一个 "),l,e(" URL 参数必须被指定为要暴露的序列。每个 "),m,e(" 变量需要被指定为一个"),s("a",_,[e("不变的维度选择器"),i(r)]),e("像 "),v,e(" 或者 "),p,e("。如果有多个 "),b,e(" 参数，则所有符合的时序数据的集合都会被选择。")]),P])}const k=t(c,[["render",f],["__file","federation.html.vue"]]);export{k as default};
