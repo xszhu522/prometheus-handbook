@@ -1,3 +1,23 @@
+---
+home: true
+icon: home fas
+title: 项目主页
+heroImage: /avatar.webp
+bgImage: https://theme-hope-assets.vuejs.press/bg/4-light.svg
+bgImageDark: https://theme-hope-assets.vuejs.press/bg/4-dark.svg
+bgImageStyle:
+  background-attachment: fixed
+heroText: prometheus-handbook
+tagline: Prometheus 中文文档
+actions:
+  - text: 开始阅读 💡
+    link: /1-introduction/overview.md
+    type: primary
+
+copyright: false
+footer: 使用 <a href="https://theme-hope.vuejs.press/zh/" target="_blank">VuePress Theme Hope</a> 主题 | MIT 协议, 版权所有 © 2019-present Mr.Hope
+---
+
 <h1 align="center">Welcome to Prometheus 中文文档 👋</h1>
 <p>
   <img src="https://img.shields.io/badge/version-2.6-blue.svg?cacheSeconds=2592000" />
